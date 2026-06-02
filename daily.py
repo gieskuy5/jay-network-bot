@@ -332,14 +332,20 @@ if __name__ == "__main__":
 
     print(f"Loaded {len(accounts)} account(s)")
 
+    def auto():
+        checkin_all(accounts)
+        complete_all_pending(accounts)
+        status_all(accounts)
+
     cmds = {
         "checkin": lambda: checkin_all(accounts),
         "check": lambda: check_all(accounts),
         "complete": lambda: complete_all_pending(accounts),
         "status": lambda: status_all(accounts),
+        "auto": auto,
     }
 
     if cmd in cmds:
         cmds[cmd]()
     else:
-        print(f"Usage: python3 {sys.argv[0]} [checkin|check|complete|status]")
+        print(f"Usage: python3 {sys.argv[0]} [checkin|check|complete|status|auto]")
