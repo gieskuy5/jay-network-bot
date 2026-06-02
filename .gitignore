@@ -1,0 +1,7 @@
+auth.txt
+mnemonic.txt
+proxy.txt
+*.log
+__pycache__/
+*.pyc
+.git
