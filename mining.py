@@ -45,13 +45,13 @@ DIR = os.path.dirname(os.path.abspath(__file__))
 MNEMONIC_FILE = os.path.join(DIR, "mnemonic.txt")
 PROXY_FILE = os.path.join(DIR, "proxy.txt")
 
-THREADS = 32
-SHARE_MIN_INTERVAL = 0.5
-SHARE_MAX_INTERVAL = 1.5
+THREADS = 16
+SHARE_MIN_INTERVAL = 1.0
+SHARE_MAX_INTERVAL = 2.5
 HEARTBEAT_INTERVAL = 15
-SHARES_BEFORE_REFRESH = 100
-HASHRATE_PER_THREAD = 25
-SHARE_CHANCE = 0.9
+SHARES_BEFORE_REFRESH = 50
+HASHRATE_PER_THREAD = 15
+SHARE_CHANCE = 0.7
 
 
 # ─── Proxy Loader ──────────────────────────────────────────────
@@ -271,7 +271,7 @@ async def submit_shares(ws, stats, session_id, device_id):
     job_id = stats.current_job_id or f"job-{int(time.time())}"
     difficulty = stats.current_difficulty
 
-    for _ in range(random.randint(10, 25)):
+    for _ in range(random.randint(8, 20)):
         if not ws_is_open(ws) or not stats.mining:
             break
         await asyncio.sleep(random.uniform(SHARE_MIN_INTERVAL, SHARE_MAX_INTERVAL))
