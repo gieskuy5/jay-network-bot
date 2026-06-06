@@ -127,7 +127,7 @@ def gen_fingerprint(index):
     ua = USER_AGENTS[index % len(USER_AGENTS)]
     screen = SCREENS[index % len(SCREENS)]
     tz = TIMEZONES[index % len(TIMEZONES)]
-    device_id = f"device_{hashlib.md5(f'jay_mining_{index}'.encode()).hexdigest()[:16]}"
+    device_id = f"device_{int(time.time()*1000)}_{os.urandom(8).hex()[:13]}"
     fp_hash = hashlib.sha256(f"{ua}{screen}{tz}{device_id}".encode()).hexdigest()[:32]
     return {"ua": ua, "screen": screen, "tz": tz, "device_id": device_id, "fingerprint": fp_hash}
 
